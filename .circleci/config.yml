@@ -7,12 +7,12 @@ jobs:
         auth:
           username: carvivocircleci
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      steps:
-        - checkout  # checkout source code to working directory
-        - run:
-            command: |  # use pipenv to install dependencies
-              sudo pip install pipenv
-              pipenv install
-        - run:
-            command: |
-              pipenv run python Katalon.py test
+    steps:
+      - checkout  # checkout source code to working directory
+      - run:
+          command: |  # use pipenv to install dependencies
+            sudo pip install pipenv
+            pipenv install
+      - run:
+          command: |
+            pipenv run python Katalon.py test
