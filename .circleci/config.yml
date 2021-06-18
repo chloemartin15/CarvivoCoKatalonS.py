@@ -16,6 +16,9 @@ jobs:
             pipenv install
             pip install selenium
             pip install chromedriver-py
+            pip install chromedriver_installer \
+                --install-option="--chromedriver-version=2.10" \
+                --install-option="--chromedriver-checksums=4fecc99b066cb1a346035bf022607104,058cd8b7b4b9688507701b5e648fd821"
       - run:
           command: |
             python Katalon.py
