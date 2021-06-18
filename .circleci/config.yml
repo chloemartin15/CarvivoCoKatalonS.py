@@ -15,6 +15,7 @@ jobs:
             pip install pipenv
             pipenv install
             pip install selenium
+            pip install webdriver-manager
       - run:
           command: |
             python Katalon.py
