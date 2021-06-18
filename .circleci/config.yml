@@ -15,7 +15,7 @@ jobs:
             pip install pipenv
             pipenv install
             pip install -U selenium
-            pip install chromedriver-py
+            choco install chromedriver
       - run:
           command: |
             python Katalon.py
