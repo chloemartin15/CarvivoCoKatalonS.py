@@ -11,10 +11,8 @@ jobs:
     steps:
       - checkout  # checkout source code to working directory
       - run:
-          command: |  # use pipenv to install dependencies
-            pip install pipenv
-            pipenv install
-            pip install -U selenium
+          command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
+            python3 -m pip install -U selenium
             python3 -m pip install Choco
             Choco install chromedriver
       - run:
