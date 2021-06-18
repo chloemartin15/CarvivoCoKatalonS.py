@@ -12,8 +12,7 @@ jobs:
       - checkout  # checkout source code to working directory
       - run:
           command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
-            python3 -m pip install choco
-            choco install selenium
+            pip install selenium
             wget https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
             unzip chromedriver_linux64.zip
             ./chromedriver
