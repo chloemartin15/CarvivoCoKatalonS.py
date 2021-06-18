@@ -11,9 +11,9 @@ jobs:
       - checkout  # checkout source code to working directory
       - run:
           command: |  # use pipenv to install dependencies
-            sudo pip install pipenv
+            pip install pipenv
             pipenv install
-            sudo pip install selenium
+            pip install selenium
       - run:
           command: |
             pipenv run python Katalon.py test
