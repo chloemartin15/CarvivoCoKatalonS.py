@@ -15,7 +15,7 @@ jobs:
             pip install pipenv
             pipenv install
             pip install selenium
-            python setup.py install
+            pip setup.py install
             pip install chromedriver-py
       - run:
           command: |
