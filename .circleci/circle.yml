@@ -1,0 +1,13 @@
+machine:
+  python:
+    # Python version to use - Selenium requires python 3.0 and above
+    version: pypy-3.6.0
+dependencies:
+    pre:
+        # Install pip packages
+        - pip install selenium
+        - pip install unittest
+test:
+  override:
+    # Bash command to run main.py
+    - python main.py
