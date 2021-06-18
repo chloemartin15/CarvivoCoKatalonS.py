@@ -12,11 +12,9 @@ jobs:
       - checkout  # checkout source code to working directory
       - run:
           command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
-            Set-ExecutionPolicy Unrestricted
-            iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
-            python3 -m pip install -U selenium
-            python3 -m pip install Choco
-            Choco install chromedriver
+            python3 -m pip install choco
+            choco install selenium
+            choco install chromedriver
       - run:
           command: |
             python Katalon.py
