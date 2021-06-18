@@ -1,13 +1,18 @@
-machine:
-  python:
-    # Python version to use - Selenium requires python 3.0 and above coucoubis
-    version: pypy-3.6.0
-dependencies:
-    pre:
-        # Install pip packages
-        - pip install selenium
-        - pip install unittest
-test:
-  override:
-    # Bash command to run main.py
-    - python main.py
+version: 2
+jobs:
+  build:
+    working_directory: ~/circleci-demo-python-django
+    docker:
+      - image: circleci/python:3.6.4  # primary container for the build job
+        auth:
+          username: carvivocircleci
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+      steps:
+        - checkout  # checkout source code to working directory
+        - run:
+            command: |  # use pipenv to install dependencies
+              sudo pip install pipenv
+              pipenv install
+        - run:
+            command: |
+              pipenv run python Katalon.py test
