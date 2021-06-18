@@ -1,6 +1,6 @@
 machine:
   python:
-    # Python version to use - Selenium requires python 3.0 and above
+    # Python version to use - Selenium requires python 3.0 and above coucou
     version: pypy-3.6.0
 dependencies:
     pre:
