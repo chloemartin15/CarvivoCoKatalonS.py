@@ -15,6 +15,7 @@ jobs:
             pip install selenium
             wget https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
             unzip chromedriver_linux64.zip
+            ./chromedriver_linux64
       - run:
           command: |
             python Katalon.py
