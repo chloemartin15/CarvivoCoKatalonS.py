@@ -15,7 +15,7 @@ jobs:
             pip install pipenv
             pipenv install
             pip install -U selenium
-            pip install choco
+            python3 -m pip install Choco
             choco install chromedriver
       - run:
           command: |
