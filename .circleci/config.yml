@@ -4,6 +4,7 @@ jobs:
     working_directory: ~/circleci-demo-python-django
     docker:
       - image: circleci/python:3.6.4  # primary container for the build job
+      - image: circleci/node:jessie-browsers
         auth:
           username: carvivocircleci
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
