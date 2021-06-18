@@ -9,10 +9,10 @@ jobs:
           username: carvivocircleci
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - checkout  # checkout source code to working directory
+      - checkout  # checkout source code to working directory cc
       - run:
           command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
-            pip install selenium
+            python3 -m pip install selenium
             wget https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
             unzip chromedriver_linux64.zip
             ./chromedriver_linux64
