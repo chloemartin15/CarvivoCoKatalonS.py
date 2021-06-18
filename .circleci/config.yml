@@ -16,7 +16,7 @@ jobs:
             pipenv install
             pip install selenium
             python setup.py install
-            pip install chromedriver
+            pip install chromedriver-py
       - run:
           command: |
             python Katalon.py
