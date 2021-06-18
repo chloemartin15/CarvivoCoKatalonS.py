@@ -16,4 +16,4 @@ jobs:
             pip install selenium
       - run:
           command: |
-            pipenv run python Katalon.py
+            python Katalon.py
