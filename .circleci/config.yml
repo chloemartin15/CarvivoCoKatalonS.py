@@ -19,6 +19,7 @@ jobs:
           name: Start Selenium
           command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
+      - run: mkdir screen
       - run:
           name: Download python
           command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
@@ -31,4 +32,4 @@ jobs:
           command: |
             python Katalon.py
       - store_artifacts:
-          path: test-reports
+          path: screen
