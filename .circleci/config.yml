@@ -3,14 +3,14 @@ orbs:
   slack: circleci/slack@4.1
 jobs:
   build:
-    working_directory: ~/circleci
+    working_directory: C:\Users\Chloe\PycharmProjects\CarvivoCoKatalonS\.circleci
     docker:
       - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job
         auth:
           username: carvivocircleci
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - checkout  # checkout source code to working directory cc  créer fichier test-reports/selenium.log
+      - checkout  # checkout source code to working directory cc
       - run:
             name: Download Selenium
             command: |
@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Start Selenium
           command: |
-            mkdir ~/circleci/test-reports
+            mkdir test-reports
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
       - run:
@@ -28,11 +28,11 @@ jobs:
             pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
-            mkdir ~/circleci/screenshots
+            mkdir screenshots
       - run:
           name: Lancer test
           command: |
             python Katalon.py
       - store_artifacts:
-          path: ~/circleci/screenshots
+          path: screenshots
           destination: screenshot
