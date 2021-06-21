@@ -6,7 +6,7 @@ jobs:
       - image: selenium/standalone-chrome:3.11.0
         auth:
           username: carvivocircleci
-          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference ceci test
     steps:
       - checkout
       - run:
