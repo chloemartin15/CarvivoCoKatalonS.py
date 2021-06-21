@@ -34,11 +34,6 @@ jobs:
           name: Lancer test
           command: |
             python Katalon.py
-      - run:
-          name: artifacts fix
-          command: |
-            RESULTS_DIR=`ls -d scanResults*`
-            mkdir scanResults
-            cp $RESULTS_DIR/scan.csv scanResults
       - store_artifacts:
-          path: scanResults/scan.csv
+          path: screenshots
+          destination: screenshot
