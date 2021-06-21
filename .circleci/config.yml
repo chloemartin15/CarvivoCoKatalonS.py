@@ -30,6 +30,5 @@ jobs:
           name: Lancer test
           command: |
             python Katalon.py
-            cd test-reports
       - store_artifacts:
-          path: test-reports
+          path: ~
