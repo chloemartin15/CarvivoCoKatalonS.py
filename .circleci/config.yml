@@ -14,13 +14,13 @@ jobs:
       - run:
             name: Download Selenium
             command: |
-              cd circleci
+              cd ~/circleci
               curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       - run:
           name: Start Selenium
           command: |
             mkdir ~/circleci/test-reports
-            cd test-reports
+            cd ~/circleci/test-reports
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
       - run:
