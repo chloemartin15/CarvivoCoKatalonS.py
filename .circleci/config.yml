@@ -13,10 +13,9 @@ jobs:
       - run:
           command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
             python3 -m pip install selenium
-            choco install circleci-cli -y
-            wget https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
-            unzip chromedriver_linux64.zip
-            ./chromedriver_linux64
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
       - run:
           command: |
             python Katalon.py test
