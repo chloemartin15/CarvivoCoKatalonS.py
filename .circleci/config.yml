@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/circleci-demo-python-django
+    working_directory: ~/circleci
     docker:
       - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job
         auth:
@@ -20,10 +20,10 @@ jobs:
             pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
-            mkdir ~/circleci-demo-python-django/screenshots
+            mkdir ~/circleci/screenshots
+      - store_artifacts:
+          path: ~/circleci/screenshots
       - run:
           name: Lancer test
           command: |
             python Katalon.py
-      - store_artifacts:
-          path: ~/circleci-demo-python-django/screenshots
