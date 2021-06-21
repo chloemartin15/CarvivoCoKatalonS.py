@@ -27,4 +27,4 @@ jobs:
             . venv/bin/activate
       - run:
           command: |
-            python C:\Users\Chloe\PycharmProjects\CarvivoCoKatalonS\Katalon.py
+            python Katalon.py test
