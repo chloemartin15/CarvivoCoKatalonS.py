@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Start Selenium
           command: |
-            mkdir test-reports
+            mkdir ~/circleci/test-reports
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
       - run:
@@ -28,7 +28,7 @@ jobs:
             pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
-            mkdir screenshots
+            mkdir ~/circleci/screenshots
       - run:
           name: Lancer test
           command: |
