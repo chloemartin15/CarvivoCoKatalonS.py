@@ -27,3 +27,4 @@ jobs:
             python Katalon.py
       - store_artifacts:
           path: ~/circleci/screenshots
+          destination: screenshot
