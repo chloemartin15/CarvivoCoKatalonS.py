@@ -3,7 +3,7 @@ orbs:
   slack: circleci/slack@4.1
 jobs:
   build:
-    working_directory: C:/circleci
+    working_directory: ~
     docker:
       - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job
         auth:
@@ -14,12 +14,12 @@ jobs:
       - run:
             name: Download Selenium
             command: |
-              cd ~/circleci
+              cd ~
               curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       - run:
           name: Start Selenium
           command: |
-            cd ~/circleci
+            cd ~
             mkdir test-reports
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
@@ -30,7 +30,7 @@ jobs:
             pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
-            cd ~/circleci
+            cd ~
             mkdir screenshots
             cd screenshots
       - run:
