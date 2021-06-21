@@ -20,7 +20,6 @@ jobs:
           name: Start Selenium
           command: |
             mkdir ~/circleci/test-reports
-            cd ~/circleci/test-reports
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
       - run:
