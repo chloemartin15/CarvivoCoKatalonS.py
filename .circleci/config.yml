@@ -29,7 +29,8 @@ jobs:
             pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
-            mkdir ~/circleci/screenshots
+            cd ~/circleci
+            mkdir screenshots
             cd screenshots
       - run:
           name: Lancer test
