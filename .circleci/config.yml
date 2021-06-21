@@ -5,10 +5,9 @@ jobs:
       - image: circleci/python:3.6.2-stretch-browsers
         auth:
           username: carvivocircleci
-            password: $DOCKERHUB_PASSWORD
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
       - checkout
-      - run: mkdir test-reports
       - run:
           name: Download Selenium
           command: |
