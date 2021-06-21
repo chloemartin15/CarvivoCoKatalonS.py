@@ -28,7 +28,7 @@ class CarvivoConnexion(unittest.TestCase):
         driver.find_element_by_id("username").click()
         driver.find_element_by_id("username").send_keys("cmartin@carvivo.com")
         driver.find_element_by_id("password").click()
-        driver.find_element_by_id("password").send_keys("xxxx")
+        driver.find_element_by_id("password").send_keys("hgw7YvvC!15")
         driver.find_element_by_id("_submit").click()
         print("connecter")
         print(driver.current_url)
