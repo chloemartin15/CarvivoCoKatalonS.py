@@ -26,4 +26,4 @@ jobs:
             . venv/bin/activate
       - run:
           command: |
-            python Katalon.py test
+            python Katalon.py
