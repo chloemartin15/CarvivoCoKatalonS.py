@@ -9,7 +9,7 @@ jobs:
         auth:
           username: carvivocircleci
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    test:
+  test:
       description: Setup and run application tests
       executor:
         name: windows/default
