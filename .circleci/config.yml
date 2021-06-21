@@ -21,9 +21,9 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             mkdir ~/circleci/screenshots
-      - store_artifacts:
-          path: ~/circleci/screenshots
       - run:
           name: Lancer test
           command: |
             python Katalon.py
+      - store_artifacts:
+          path: ~/circleci/screenshots
