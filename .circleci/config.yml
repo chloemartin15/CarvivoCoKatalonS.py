@@ -3,7 +3,7 @@ orbs:
   slack: circleci/slack@4.1
 jobs:
   build:
-    working_directory: ~
+    working_directory: ~/test
     docker:
       - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job
         auth:
@@ -31,4 +31,4 @@ jobs:
           command: |
             python Katalon.py
       - store_artifacts:
-          path: ~
+          path: ~/test
