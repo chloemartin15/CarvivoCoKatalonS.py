@@ -3,7 +3,7 @@ orbs:
   slack: circleci/slack@4.1
 jobs:
   build:
-    working_directory: C:\circleci
+    working_directory: C:/circleci
     docker:
       - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job
         auth:
