@@ -32,7 +32,6 @@ jobs:
             . venv/bin/activate
             cd ~
             mkdir screenshots
-            cd screenshots
       - run:
           name: Lancer test
           command: |
