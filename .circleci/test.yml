@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
+      - image: selenium/standalone-chrome:3.11.0
         auth:
           username: carvivocircleci
           password: $DOCKERHUB_PASSWORD # context / project UI env-var reference

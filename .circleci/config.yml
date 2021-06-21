@@ -4,7 +4,6 @@ jobs:
     working_directory: ~/circleci-demo-python-django
     docker:
       - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job
-      - image: selenium/standalone-chrome:3.11.0
         auth:
           username: carvivocircleci
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -17,7 +16,7 @@ jobs:
       - run:
             name: Start Selenium
             command: |
-                    java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+              java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
             background: true
       - run:
           command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
