@@ -31,5 +31,4 @@ jobs:
           command: |
             python Katalon.py
       - store_artifacts:
-          path: screenshots
-          destination: screenshot
+          path: test-reports
