@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/circleci-demo-python-django
+    docker:
+      - image: circleci/python:3.9.5  # primary container for the build job
+      - image: selenium/standalone-chrome:3.11.0
+        auth:
+          username: carvivocircleci
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout  # checkout source code to working directory cc
+      - run:
+          command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
+            python3 -m pip install selenium
+            choco install circleci-cli -y
+            wget https://chromedriver.storage.googleapis.com/2.20/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            ./chromedriver_linux64
+      - run:
+          command: |
+            python Katalon.py
