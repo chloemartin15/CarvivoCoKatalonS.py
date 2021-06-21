@@ -30,12 +30,15 @@ jobs:
             pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
-            cd ~
-            mkdir screenshots
       - run:
           name: Lancer test
           command: |
             python Katalon.py
+      - run:
+          name: artifacts fix
+          command: |
+            RESULTS_DIR=`ls -d scanResults*`
+            mkdir scanResults
+            cp $RESULTS_DIR/scan.csv scanResults
       - store_artifacts:
-          path: screenshots
-          destination: screenshot
+          path: scanResults/scan.csv
