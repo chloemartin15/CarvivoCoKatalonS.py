@@ -20,7 +20,10 @@ jobs:
             pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
+            mkdir ~/circleci-demo-python-django/screenshots
       - run:
           name: Lancer test
           command: |
             python Katalon.py
+      - store_artifacts:
+          path: ~/circleci-demo-python-django/screenshots
