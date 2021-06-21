@@ -17,27 +17,27 @@ jobs:
         - checkout  # checkout source code to working directory cc
         - run:
              name: Download Selenium
-              command: |
+             command: |
                 cd ~
                 curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
          - run:
             name: Start Selenium
-              command: |
-                cd ~
-                mkdir test-reports
-                java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+            command: |
+              cd ~
+              mkdir test-reports
+              java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
             background: true
         - run:
             name: Download python
-              command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
-                sudo python3 -m pip install --upgrade pip
-                pip install -U selenium
-                python3 -m venv venv
-                . venv/bin/activate
+            command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
+              sudo python3 -m pip install --upgrade pip
+              pip install -U selenium
+              python3 -m venv venv
+              . venv/bin/activate
         - run:
             name: Lancer test
-              command: |
-                python Katalon.py
+            command: |
+              python Katalon.py
         - store_artifacts:
             path: screenshots
             destination: screenshot
