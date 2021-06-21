@@ -1,6 +1,6 @@
 version: 2
 orbs:
-  slack: circleci/slack@4.1
+  windows: circleci/windows@2.2.0
 jobs:
   build:
     working_directory: ~
