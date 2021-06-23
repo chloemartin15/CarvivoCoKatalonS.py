@@ -7,20 +7,12 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2
-orbs:
-  wait-for: cobli/wait-for@x.x.x
 jobs:
-  build:
-    working_directory: ~/selenium
-    docker:
-      - image: circleci/php:7.2.15-node-browsers
-    steps:
-      - checkout
-
   test:
       working_directory: ~/selenium
       docker:
         - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job cc
+        - image: circleci/php:7.2.15-node
         - image: circleci/mysql:5.7.21
           environment:
               MYSQL_DATABASE: carvivo
@@ -104,11 +96,3 @@ jobs:
            working_directory: ./selenium
         - store_artifacts:
             path: ~/selenium
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test :
-          requires:
-            - build
