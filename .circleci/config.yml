@@ -14,11 +14,6 @@ jobs:
     working_directory: ~/selenium
     docker:
       - image: circleci/php:7.2.15-node-browsers
-      - image: circleci/mysql:5.7.21
-        environment:
-          MYSQL_DATABASE: carvivo
-          MYSQL_ROOT: root
-          MYSQL_ROOT_PASSWORD: mysql
     steps:
       - checkout
 
