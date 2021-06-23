@@ -39,7 +39,7 @@ jobs:
             keys:
                - vendor-{{ checksum "composer.lock" }}
             paths:
-                       - ./vendor
+               - ./vendor
         - run:
              command: rm -rf cache/*
              working_directory: ./app/
