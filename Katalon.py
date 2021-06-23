@@ -20,7 +20,7 @@ class CarvivoConnexion(unittest.TestCase):
 
     def test_CarvivoConnexion(self):
         driver = self.driver
-        driver.get("https://pp-fr.carvivo.com/login")
+        driver.get("http://localhost:8080/login")
         print("carvivoLogin")
         driver.set_window_size(1920, 1080)
         print(driver.current_url)

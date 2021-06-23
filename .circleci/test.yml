@@ -1,36 +1,31 @@
 version: 2
+orbs:
+  slack: circleci/slack@4.1
 jobs:
   build:
+    working_directory: ~/test
     docker:
-      - image: circleci/python:3.6.2-stretch-browsers
-      - image: selenium/standalone-chrome:3.11.0
-        auth:
-          username: carvivocircleci
-          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference ceci test
+      - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job
     steps:
-      - checkout
+      - checkout  # checkout source code to working directory cc
+      - run: mkdir test-reports
       - run:
           name: Download Selenium
-          command: |
-            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       - run:
           name: Start Selenium
-          command: |
-            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
       - run:
-          name: Install Python deps in a venv
-          command: |
+          name: Download python
+          command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
+            sudo python3 -m pip install --upgrade pip
+            pip install -U selenium
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements/dev.txt
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
-          paths:
-            - "venv"
       - run:
+          name: Lancer test
           command: |
-            . venv/bin/activate
-            python Katalon.py test
+            python Katalon.py
+      - store_artifacts:
+          path: ~/test
