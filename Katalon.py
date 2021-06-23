@@ -13,13 +13,14 @@ class CarvivoConnexion(unittest.TestCase):
         #options.headless = True
         #options.add_argument("window-size=1400,600")
         #self.driver = webdriver.Chrome(chrome_options=options, executable_path=r'C:\Users\Chloe\Drivers\chromedriver.exe')
+        #self.driver = webdriver.Chrome(chrome_options=options, executable_path=r'~/test/chromedriver.exe')
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(30)
         self.base_url = "https://www.google.com/"
 
     def test_CarvivoConnexion(self):
         driver = self.driver
-        driver.get("https://pp-fr.carvivo.com/login")
+        driver.get("http://localhost:8080/login")
         print("carvivoLogin")
         driver.set_window_size(1920, 1080)
         print(driver.current_url)

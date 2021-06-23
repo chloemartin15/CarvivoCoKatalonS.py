@@ -1,13 +1,98 @@
-machine:
-  python:
-    # Python version to use - Selenium requires python 3.0 and above
-    version: pypy-3.6.0
-dependencies:
-    pre:
-        # Install pip packages
-        - pip install selenium
-        - pip install unittest
-test:
-  override:
-    # Bash command to run main.py
-    - python main.py
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+jobs:
+  build:
+      working_directory: ~/selenium
+      docker:
+        - image: circleci/php:7.2.15-node-browsers
+        - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job cc
+        - image: circleci/mysql:5.7.21
+          environment:
+              MYSQL_DATABASE: carvivo
+              MYSQL_ROOT: root
+              MYSQL_ROOT_PASSWORD: mysql
+      steps:
+        - checkout
+        - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
+        - run: sudo apt install -y libxml2-dev
+        - run: sudo pecl channel-update pecl.php.net
+        - run: sudo pecl install redis && sudo docker-php-ext-enable redis
+        - run: sudo docker-php-ext-install zip
+        - run: sudo docker-php-ext-install pdo_mysql
+        - run: sudo docker-php-ext-enable pdo_mysql
+        - run: sudo docker-php-ext-install soap
+        - run: sudo docker-php-ext-install calendar
+        - run: sudo docker-php-ext-configure calendar
+        - run: sudo docker-php-ext-enable calendar
+        - run: sudo wget https://phar.phpunit.de/phpunit-7.5.6.phar
+        - run: sudo chmod +x ./phpunit-7.5.6.phar
+        - run: sudo docker-php-ext-install pcntl
+  # Download and cache dependencies
+        - restore_cache:
+            keys:
+               - vendor-{{ checksum "composer.lock" }}
+            paths:
+               - ./vendor
+        - run:
+             command: rm -rf cache/*
+             working_directory: ./app/
+        - run:
+             command: composer install -n -vvv --prefer-dist --dev || true
+             working_directory: ./
+        - run:
+             command: rm -rf cache/*
+             working_directory: ./app/
+        - save_cache:
+             key: vendor-{{ checksum "composer.lock" }}
+             paths:
+               - ./vendor
+        - run:
+             command: ls -larth
+             working_directory: ./app/
+        - run:
+             command: php app/console doctrine:schema:update --force || true
+             working_directory: ./
+        - run:
+             command: yes | php app/console doctrine:fixtures:load --fixtures=src/Carvivo/CrmBundle/DataFixtures/ORM/Test || true
+             working_directory: ./
+  # prepare the database
+        - run: mkdir storage && touch storage/testing.sqlite
+  # run tests with phpunit or codecept
+        - run:
+             command: ./phpunit-7.5.6.phar --stop-on-failure  -c app/ --testsuite crm src/Carvivo/ApiBundle
+             working_directory: ./
+        - run:
+             command: ./phpunit-7.5.6.phar --stop-on-failure  -c app/ --testsuite crm src/Carvivo/CrmBundle
+             working_directory: ./
+        - run:
+             command: php app/console  server:start
+             working_directory: ./
+        - run:
+            name: Download python
+            command: |  # use pipenv to install dependencies  python3 -m pip install pipenv pipenv install
+              sudo python3 -m pip install --upgrade pip
+              pip install -U selenium
+              python3 -m venv venv
+              . venv/bin/activate
+        - run: mkdir test-reports
+        - run:
+            name: Download Selenium
+            command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+        - run:
+            name: Start Selenium
+            command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+            background: true
+        - run:
+           name: Lancer test
+           command: |
+             python Katalon.py
+           working_directory: ./selenium
+        - store_artifacts:
+            path: ~/selenium
