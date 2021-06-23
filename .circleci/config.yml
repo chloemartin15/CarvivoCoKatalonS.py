@@ -26,11 +26,14 @@ jobs:
               MYSQL_DATABASE: carvivo
               MYSQL_ROOT: root
               MYSQL_ROOT_PASSWORD: mysql
+      dependencies:
+        override:
+          - curl -s https://packagecloud.io/install/repositories/circleci/trusty/script.deb.sh | sudo bash
+          - sudo apt-get install circleci-php-7.0.3=3
       steps:
         - checkout
         - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
         - run: sudo apt install -y libxml2-dev
-        - run: pacman -S php-pear
         - run: sudo pecl channel-update pecl.php.net
         - run: sudo pecl install redis && sudo docker-php-ext-enable redis
         - run: sudo docker-php-ext-install zip
