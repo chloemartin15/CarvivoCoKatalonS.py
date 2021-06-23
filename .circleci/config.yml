@@ -11,8 +11,8 @@ jobs:
   build:
       working_directory: ~/selenium
       docker:
+        - image: circleci/php:7.2.15-node-browsers
         - image: circleci/python:3.6.2-stretch-browsers  # primary container for the build job cc
-        - image: circleci/php:7.2.15-node
         - image: circleci/mysql:5.7.21
           environment:
               MYSQL_DATABASE: carvivo
